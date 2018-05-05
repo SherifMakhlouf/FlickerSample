@@ -29,4 +29,5 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.json:json:20171018'
+    testImplementation 'org.mockito:mockito-core:2.18.3'
 }

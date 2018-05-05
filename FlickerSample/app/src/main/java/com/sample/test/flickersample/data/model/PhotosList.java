@@ -1,4 +1,4 @@
-package com.sample.test.flickersample.data;
+package com.sample.test.flickersample.data.model;
 
 import java.util.List;
 
