@@ -14,7 +14,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="com.sample.test.flickersample.ui.ImageListActivity">
+        tools:context=".query.ui.ImageListActivity">
 
         <ProgressBar
             android:id="@+id/progress_bar"

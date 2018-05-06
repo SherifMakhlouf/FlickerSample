@@ -1,7 +1,7 @@
-package com.sample.test.flickersample.data.repository.network;
+package com.sample.test.flickersample.query.data.repository.network;
 
-import com.sample.test.flickersample.data.model.PhotosList;
-import com.sample.test.flickersample.data.repository.PhotosRepository;
+import com.sample.test.flickersample.query.data.model.PhotosList;
+import com.sample.test.flickersample.query.data.repository.PhotosRepository;
 
 import org.json.JSONException;
 

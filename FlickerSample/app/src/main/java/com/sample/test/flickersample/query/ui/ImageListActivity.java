@@ -1,4 +1,4 @@
-package com.sample.test.flickersample.ui;
+package com.sample.test.flickersample.query.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +13,9 @@ import android.widget.ProgressBar;
 
 import com.sample.test.flickersample.FlickerApplication;
 import com.sample.test.flickersample.R;
-import com.sample.test.flickersample.data.model.Photo;
-import com.sample.test.flickersample.domain.PhotosInteractor;
-import com.sample.test.flickersample.ui.PhotosPresenter.PhotosViewModel;
+import com.sample.test.flickersample.query.data.model.Photo;
+import com.sample.test.flickersample.query.domain.PhotosInteractor;
+import com.sample.test.flickersample.query.ui.PhotosPresenter.PhotosViewModel;
 import com.sample.test.flickersample.util.PhotoLoader;
 
 import java.util.List;
@@ -84,7 +84,6 @@ public class ImageListActivity extends AppCompatActivity implements PhotosPresen
         return newState == RecyclerView.SCROLL_STATE_IDLE
                 && layoutManager.findLastVisibleItemPosition() == adapter.getItemCount() - 1;
     }
-
 
     @Override
     protected void onStart() {

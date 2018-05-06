@@ -5,10 +5,10 @@ import android.app.Application;
 import android.graphics.Bitmap;
 import android.util.LruCache;
 
-import com.sample.test.flickersample.data.repository.PhotosRepository;
-import com.sample.test.flickersample.data.repository.network.FlickerRepository;
-import com.sample.test.flickersample.data.repository.network.PhotoParser;
-import com.sample.test.flickersample.domain.PhotosInteractor;
+import com.sample.test.flickersample.query.data.repository.PhotosRepository;
+import com.sample.test.flickersample.query.data.repository.network.FlickerRepository;
+import com.sample.test.flickersample.query.data.repository.network.PhotoParser;
+import com.sample.test.flickersample.query.domain.PhotosInteractor;
 
 import java.util.concurrent.Executors;
 

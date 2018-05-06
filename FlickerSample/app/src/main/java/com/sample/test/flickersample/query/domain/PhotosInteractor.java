@@ -1,7 +1,7 @@
-package com.sample.test.flickersample.domain;
+package com.sample.test.flickersample.query.domain;
 
-import com.sample.test.flickersample.data.model.Photo;
-import com.sample.test.flickersample.data.repository.PhotosRepository;
+import com.sample.test.flickersample.query.data.model.Photo;
+import com.sample.test.flickersample.query.data.repository.PhotosRepository;
 
 import java.util.ArrayList;
 import java.util.List;
