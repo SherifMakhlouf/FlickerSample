@@ -81,5 +81,24 @@ public class PhotosPresenter implements PhotosInteractor.SearchListener {
             Error,
             Data
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+
+            if (o == null || !(o instanceof PhotosViewModel)) return false;
+
+            PhotosViewModel given = (PhotosViewModel) o;
+            return given.state.equals(state)
+                    && (data == null ? given.data == null : given.data.equals(data));
+        }
+
+        @Override
+        public int hashCode() {
+            int result = 17;
+            result = 31 * result + state.hashCode();
+            result = 31 * result + (data == null ? 0 : data.hashCode());
+            return result;
+        }
     }
 }
