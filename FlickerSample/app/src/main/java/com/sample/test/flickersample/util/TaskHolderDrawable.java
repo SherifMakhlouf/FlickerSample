@@ -6,19 +6,20 @@ import android.graphics.drawable.ColorDrawable;
 import java.lang.ref.WeakReference;
 
 /**
- * Todo
+ * Drawable to hold current running task.
+ * note: This can be used to show loading indication
  */
-public class TaskHolderDrawable extends ColorDrawable {
+class TaskHolderDrawable extends ColorDrawable {
 
     private final WeakReference<PhotoLoaderAsyncTask> bitmapLoaderTaskReference;
 
-    public TaskHolderDrawable(PhotoLoaderAsyncTask bitmapDownloaderTask) {
-        super(Color.BLACK);
+    TaskHolderDrawable(PhotoLoaderAsyncTask bitmapDownloaderTask) {
+        super(Color.GRAY);
         bitmapLoaderTaskReference =
                 new WeakReference<>(bitmapDownloaderTask);
     }
 
-    public PhotoLoaderAsyncTask getBitmapDownloaderTask() {
+    PhotoLoaderAsyncTask getBitmapDownloaderTask() {
         return bitmapLoaderTaskReference.get();
     }
 }

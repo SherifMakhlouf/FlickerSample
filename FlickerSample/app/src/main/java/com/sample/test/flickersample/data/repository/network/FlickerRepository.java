@@ -21,18 +21,22 @@ import static java.lang.String.format;
  */
 public class FlickerRepository implements PhotosRepository {
 
-    public static final String API_KEY = "3e7cc266ae2b0e0d78e279ce8e361736";
-    public static final String URL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%s&format=json&nojsoncallback=1&safe_search=1&text=%s&page=%d";
+    private static final String API_KEY = "3e7cc266ae2b0e0d78e279ce8e361736";
+    private static final String URL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%s&format=json&nojsoncallback=1&safe_search=1&text=%s&page=%d";
+    private final PhotoParser parser;
+
+    public FlickerRepository(PhotoParser parser) {
+        this.parser = parser;
+    }
 
     @Override
     public PhotosList query(String query, int page) {
         try {
             String response = requestPhotos(buildUrl(query, page));
-            PhotoParser parser = new PhotoParser(); //todo inject this
 
             return parser.parseResponse(response);
         } catch (IOException | JSONException e) {
-            e.printStackTrace(); //todo handle errors
+            // Do nothing, should handle error here
             return null;
         }
     }
@@ -55,7 +59,8 @@ public class FlickerRepository implements PhotosRepository {
             BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String line;
             StringBuilder stringBuilder = new StringBuilder();
-            while ((line = in.readLine()) != null){
+
+            while ((line = in.readLine()) != null) {
                 stringBuilder.append(line);
             }
 

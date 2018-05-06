@@ -7,12 +7,10 @@ import java.util.List;
  */
 public class PhotosList {
     public final int page;
-    public final int perPage;
     public final List<Photo> photos;
 
-    public PhotosList(int page, int perPage, List<Photo> photos) {
+    public PhotosList(int page, List<Photo> photos) {
         this.page = page;
-        this.perPage = perPage;
         this.photos = photos;
     }
 
@@ -20,7 +18,6 @@ public class PhotosList {
     public int hashCode() {
         int result = 17;
         result = 31 * result + page;
-        result = 31 * result + perPage;
         result = 31 * result + (photos == null ? 0 : photos.hashCode());
         return result;
     }
@@ -33,7 +30,6 @@ public class PhotosList {
 
         PhotosList given = (PhotosList) o;
         return given.page == page
-                && given.perPage == perPage
                 && given.photos.equals(photos);
     }
 }

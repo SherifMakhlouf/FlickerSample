@@ -15,8 +15,8 @@ public class PhotosInteractor {
     private final PhotosRepository repository;
     private final Executor executor;
     private AtomicInteger currentPage = new AtomicInteger(1);
-    private SearchListener listener;
     private List<Photo> currentData = new ArrayList<>();
+    private SearchListener listener;
 
     public PhotosInteractor(PhotosRepository repository, Executor executor) {
         this.repository = repository;
@@ -68,6 +68,11 @@ public class PhotosInteractor {
      */
     public interface SearchListener {
 
+        /**
+         * On new query result
+         *
+         * @param result list of photos associated with the result.
+         */
         void onSearchResult(List<Photo> result);
     }
 

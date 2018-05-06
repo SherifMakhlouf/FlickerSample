@@ -19,6 +19,7 @@ public class PhotoParser {
 
     /**
      * Parse flicker's search response
+     *
      * @param response Json string response
      * @return {@link PhotosList} containing parsed response
      * @throws JSONException
@@ -45,7 +46,6 @@ public class PhotoParser {
 
         return new PhotosList(
                 paginatedPhotos.getInt("page"),
-                paginatedPhotos.getInt("perpage"),
                 photosList
         );
     }

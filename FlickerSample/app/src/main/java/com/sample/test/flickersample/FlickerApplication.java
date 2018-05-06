@@ -7,14 +7,14 @@ import android.util.LruCache;
 
 import com.sample.test.flickersample.data.repository.PhotosRepository;
 import com.sample.test.flickersample.data.repository.network.FlickerRepository;
+import com.sample.test.flickersample.data.repository.network.PhotoParser;
 import com.sample.test.flickersample.domain.PhotosInteractor;
 
 import java.util.concurrent.Executors;
 
 /**
- * Todo
+ * Application class used to resolve dependencies.
  */
-
 public class FlickerApplication extends Application {
     private PhotosInteractor interactor;
     private LruCache<String, Bitmap> photoCache;
@@ -22,9 +22,13 @@ public class FlickerApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        PhotosRepository photosRepository = new FlickerRepository();
+        PhotosRepository photosRepository = new FlickerRepository(new PhotoParser());
         interactor = new PhotosInteractor(photosRepository,
                 Executors.newSingleThreadScheduledExecutor());
+        createPhotosCache();
+    }
+
+    private void createPhotosCache() {
         ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
         int memoryClassByte = activityManager.getMemoryClass() * 1024 * 1024;
         photoCache = new LruCache<>(memoryClassByte);

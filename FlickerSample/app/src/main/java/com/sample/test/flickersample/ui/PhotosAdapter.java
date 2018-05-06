@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Todo
+ * Photos recyclerView adapter
  */
 public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder> {
     private final PhotoLoader photoLoader;
@@ -38,7 +38,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.PhotoViewH
 
     @Override
     public void onBindViewHolder(PhotoViewHolder holder, int position) {
-        photoLoader.downloadPhoto(photosList.get(position).url, holder.imageView);
+        photoLoader.loadPhoto(photosList.get(position).url, holder.imageView);
     }
 
     @Override

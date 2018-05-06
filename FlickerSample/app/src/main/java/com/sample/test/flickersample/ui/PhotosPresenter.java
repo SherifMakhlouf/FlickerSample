@@ -12,9 +12,8 @@ import static com.sample.test.flickersample.ui.PhotosPresenter.PhotosViewModel.l
 import static com.sample.test.flickersample.ui.PhotosPresenter.PhotosViewModel.loadingMore;
 
 /**
- * Todo
+ * Photo search presenter
  */
-
 public class PhotosPresenter implements PhotosInteractor.SearchListener {
     private PhotosInteractor interactor;
     private PhotosStateView view;

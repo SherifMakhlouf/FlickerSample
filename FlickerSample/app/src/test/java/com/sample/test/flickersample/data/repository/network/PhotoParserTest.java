@@ -46,7 +46,6 @@ public class PhotoParserTest {
 
         PhotosList expected = new PhotosList(
                 1,
-                100,
                 Collections.singletonList(
                         new Photo("http://farm1.static.flickr.com/111/222_333.jpg")
                 )

@@ -21,12 +21,12 @@ public class PhotoLoaderAsyncTask extends AsyncTask<String, Void, Bitmap> {
     private final LruCache<String, Bitmap> cache;
     private  String url;
 
-    public PhotoLoaderAsyncTask(ImageView imageView, LruCache<String, Bitmap> cache) {
+    PhotoLoaderAsyncTask(ImageView imageView, LruCache<String, Bitmap> cache) {
         imageViewReference = new WeakReference<>(imageView);
         this.cache = cache;
     }
 
-    public String getUrl() {
+    String getUrl() {
         return url;
     }
 
@@ -47,7 +47,7 @@ public class PhotoLoaderAsyncTask extends AsyncTask<String, Void, Bitmap> {
         if (imageViewReference.get() != null) {
             ImageView imageView = imageViewReference.get();
             PhotoLoaderAsyncTask associatedTask = getBitmapDownloaderTask(imageView);
-            // Change bitmap only if this process is still associated with it
+            // Change bitmap only if this asyncTask is still associated with it
             if (this == associatedTask) {
                 imageView.setImageBitmap(bitmap);
             }
@@ -79,8 +79,9 @@ public class PhotoLoaderAsyncTask extends AsyncTask<String, Void, Bitmap> {
                 connection.disconnect();
             }
         } catch (IOException e) {
-
+            // Do nothing, should handle error
         }
+
         return null;
     }
 }

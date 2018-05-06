@@ -12,12 +12,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executor;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -44,7 +46,8 @@ public class PhotosInteractorTest {
         // Given
         String query = "Kittens";
         int page = 1;
-        PhotosList result = createPhotosList(page);
+        List<Photo> list = getPhotos();
+        PhotosList result = createPhotosList(page, list);
 
         given(repository.query(anyString(), anyInt()))
                 .willReturn(result);
@@ -53,7 +56,7 @@ public class PhotosInteractorTest {
         testee.query(query);
 
         // Then
-        verify(listener).onSearchResult(result);
+        verify(listener).onSearchResult(list);
     }
 
     @Test
@@ -61,7 +64,8 @@ public class PhotosInteractorTest {
         // Given
         String query = "Kittens";
         int page = 1;
-        PhotosList result = createPhotosList(page);
+        List<Photo> list = getPhotos();
+        PhotosList result = createPhotosList(page, list);
 
         given(repository.query(anyString(), anyInt()))
                 .willReturn(result);
@@ -72,15 +76,20 @@ public class PhotosInteractorTest {
 
         // Then
         verify(repository).query(query, 2);
-        verify(listener).onNextLoaded(result);
+        verify(listener, times(2)).onSearchResult(list);
     }
 
 
-    private PhotosList createPhotosList(int page) {
+    private PhotosList createPhotosList(int page, List<Photo> list) {
         return new PhotosList(
                 page,
-                1,
-                Collections.singletonList(new Photo("www.cat.com")));
+                list);
+    }
+
+    private List<Photo> getPhotos() {
+        List<Photo> list = new ArrayList<>();
+        list.add(new Photo("www.cat.com"));
+        return list;
     }
 
     static class FakeExecutor implements Executor {

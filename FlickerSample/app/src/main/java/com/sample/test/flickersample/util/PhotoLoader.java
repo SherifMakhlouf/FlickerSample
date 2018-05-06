@@ -6,7 +6,7 @@ import android.util.LruCache;
 import android.widget.ImageView;
 
 /**
- * Todo
+ * A helper class for loading remote images into image views
  */
 public class PhotoLoader {
 
@@ -16,7 +16,15 @@ public class PhotoLoader {
         this.cache = cache;
     }
 
-    public void downloadPhoto(String url, ImageView imageView) {
+    /**
+     * Loads photo with given url into the given ImageView. If image is already cached
+     * it will directly load it into the view, otherwise it will asynchronously load
+     * the image from remote
+     *
+     * @param url       remote url.
+     * @param imageView image view to load image in.
+     */
+    public void loadPhoto(String url, ImageView imageView) {
         if (cache.get(url) != null) {
             imageView.setImageBitmap(cache.get(url));
         } else if (cancelPotentialDownload(url, imageView)) {
