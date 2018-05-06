@@ -1,4 +1,5 @@
 # FlickerSample
+[![Build Status](https://travis-ci.org/SherifMakhlouf/FlickerSample.svg?branch=master)](https://travis-ci.org/SherifMakhlouf/FlickerSample)
 
 This sample app uses the Flickr image search API and shows the results in a 3-column scrollable view.
 
