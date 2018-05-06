@@ -32,6 +32,6 @@ Presenter takes state from Domain layer and converts it into a viewmodel that ca
 Note: Syncronizing to UI thread happens in the View itself.
 
 ## Things to improve
-- Adding Error handlilng for netwrok failures and adding retrials.
-- Threading model isn't very effecent, currently search is done on a single thread executor and photo loading is done serially using AsyncTasks.
+- Adding Error handlilng for netwrok failures.
+- Adding Retrials.
 - Adding proper prioritization for image loading. currently when flinging tasks are cancelled for views that are out of screen. having priority queue for requests would improve that.
