@@ -9,13 +9,13 @@ import com.sample.test.flickersample.data.repository.PhotosRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Collections;
 import java.util.concurrent.Executor;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.verify;
@@ -25,14 +25,11 @@ import static org.mockito.Mockito.verify;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class PhotosInteractorTest {
-
     @Mock
     PhotosRepository repository;
-
     @Mock
     PhotosInteractor.SearchListener listener;
-
-    FakeExecutor executor = new FakeExecutor();
+    private FakeExecutor executor = new FakeExecutor();
     private PhotosInteractor testee;
 
 
@@ -49,7 +46,7 @@ public class PhotosInteractorTest {
         int page = 1;
         PhotosList result = createPhotosList(page);
 
-        BDDMockito.given(repository.query(anyString(), anyInt()))
+        given(repository.query(anyString(), anyInt()))
                 .willReturn(result);
 
         // When
@@ -66,7 +63,7 @@ public class PhotosInteractorTest {
         int page = 1;
         PhotosList result = createPhotosList(page);
 
-        BDDMockito.given(repository.query(anyString(), anyInt()))
+        given(repository.query(anyString(), anyInt()))
                 .willReturn(result);
 
         // When

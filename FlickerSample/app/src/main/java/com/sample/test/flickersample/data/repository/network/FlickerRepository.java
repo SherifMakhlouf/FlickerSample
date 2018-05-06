@@ -5,9 +5,9 @@ import com.sample.test.flickersample.data.repository.PhotosRepository;
 
 import org.json.JSONException;
 
-import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -29,6 +29,7 @@ public class FlickerRepository implements PhotosRepository {
         try {
             String response = requestPhotos(buildUrl(query, page));
             PhotoParser parser = new PhotoParser(); //todo inject this
+
             return parser.parseResponse(response);
         } catch (IOException | JSONException e) {
             e.printStackTrace(); //todo handle errors
@@ -51,9 +52,14 @@ public class FlickerRepository implements PhotosRepository {
     private String requestPhotos(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String line;
+            StringBuilder stringBuilder = new StringBuilder();
+            while ((line = in.readLine()) != null){
+                stringBuilder.append(line);
+            }
 
-            return in.toString();
+            return stringBuilder.toString();
         } finally {
             urlConnection.disconnect();
         }

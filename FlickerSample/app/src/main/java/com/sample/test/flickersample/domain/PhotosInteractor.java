@@ -1,8 +1,10 @@
 package com.sample.test.flickersample.domain;
 
-import com.sample.test.flickersample.data.model.PhotosList;
+import com.sample.test.flickersample.data.model.Photo;
 import com.sample.test.flickersample.data.repository.PhotosRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -12,13 +14,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PhotosInteractor {
     private final PhotosRepository repository;
     private final Executor executor;
-    private AtomicInteger currentPage =  new AtomicInteger(1);
+    private AtomicInteger currentPage = new AtomicInteger(1);
     private SearchListener listener;
+    private List<Photo> currentData = new ArrayList<>();
 
-    public PhotosInteractor(
-            PhotosRepository repository,
-            Executor executor
-    ) {
+    public PhotosInteractor(PhotosRepository repository, Executor executor) {
         this.repository = repository;
         this.executor = executor;
     }
@@ -29,6 +29,7 @@ public class PhotosInteractor {
 
     /**
      * Loads first page of the given query
+     *
      * @param query query string
      */
     public void query(final String query) {
@@ -36,23 +37,27 @@ public class PhotosInteractor {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                listener.onSearchResult(
-                        repository.query(query, currentPage.get())
-                );
+                currentData = repository.query(query, currentPage.get()).photos;
+                listener.onSearchResult(currentData);
             }
         });
     }
 
     /**
      * Loads next page of the current query
+     *
      * @param query query string
      */
     public void loadNext(final String query) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                listener.onNextLoaded(
-                        repository.query(query, currentPage.incrementAndGet())
+                currentData.addAll(
+                        repository.query(query, currentPage.incrementAndGet()).photos
+                );
+
+                listener.onSearchResult(
+                        currentData
                 );
             }
         });
@@ -63,9 +68,7 @@ public class PhotosInteractor {
      */
     public interface SearchListener {
 
-        void onSearchResult(PhotosList result);
-
-        void onNextLoaded(PhotosList result);
+        void onSearchResult(List<Photo> result);
     }
 
 }
