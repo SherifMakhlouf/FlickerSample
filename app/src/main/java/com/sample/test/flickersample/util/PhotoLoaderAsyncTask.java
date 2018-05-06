@@ -44,8 +44,8 @@ public class PhotoLoaderAsyncTask extends AsyncTask<String, Void, Bitmap> {
             bitmap = null;
         }
 
-        if (imageViewReference.get() != null) {
-            ImageView imageView = imageViewReference.get();
+        ImageView imageView = imageViewReference.get();
+        if (imageView != null) {
             PhotoLoaderAsyncTask associatedTask = getBitmapDownloaderTask(imageView);
             // Change bitmap only if this asyncTask is still associated with it
             if (this == associatedTask) {

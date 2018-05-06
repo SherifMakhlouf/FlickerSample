@@ -9,8 +9,7 @@ import com.sample.test.flickersample.query.data.repository.PhotosRepository;
 import com.sample.test.flickersample.query.data.repository.network.FlickerRepository;
 import com.sample.test.flickersample.query.data.repository.network.PhotoParser;
 import com.sample.test.flickersample.query.domain.PhotosInteractor;
-
-import java.util.concurrent.Executors;
+import com.sample.test.flickersample.util.ScheduledExecutor;
 
 /**
  * Application class used to resolve dependencies.
@@ -24,7 +23,7 @@ public class FlickerApplication extends Application {
         super.onCreate();
         PhotosRepository photosRepository = new FlickerRepository(new PhotoParser());
         interactor = new PhotosInteractor(photosRepository,
-                Executors.newSingleThreadScheduledExecutor());
+                new ScheduledExecutor());
         createPhotosCache();
     }
 
