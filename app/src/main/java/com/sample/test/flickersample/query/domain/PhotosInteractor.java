@@ -4,6 +4,7 @@ import com.sample.test.flickersample.query.data.model.Photo;
 import com.sample.test.flickersample.query.data.repository.PhotosRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -33,14 +34,18 @@ public class PhotosInteractor {
      * @param query query string
      */
     public void query(final String query) {
-        currentPage.set(1);
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                currentData = repository.query(query, currentPage.get()).photos;
-                listener.onSearchResult(currentData);
-            }
-        });
+        if (query.isEmpty()) {
+            listener.onSearchResult(Collections.<Photo>emptyList());
+        } else {
+            currentPage.set(1);
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    currentData = repository.query(query, currentPage.get()).photos;
+                    listener.onSearchResult(currentData);
+                }
+            });
+        }
     }
 
     /**

@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -57,6 +58,18 @@ public class PhotosInteractorTest {
 
         // Then
         verify(listener).onSearchResult(list);
+    }
+
+    @Test
+    public void testQuery_emptyString_ReturnEmptyList() throws Exception {
+        // Given
+        String query = "";
+
+        // When
+        testee.query(query);
+
+        // Then
+        verify(listener).onSearchResult(Collections.<Photo>emptyList());
     }
 
     @Test
