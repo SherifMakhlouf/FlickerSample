@@ -1,4 +1,4 @@
-package com.sample.test.flickersample.query.data.model;
+package com.sample.test.flickersample.features.query.data.model;
 
 /**
  * Single photo model

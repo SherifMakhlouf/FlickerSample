@@ -1,7 +1,7 @@
-package com.sample.test.flickersample.query.data.repository.network;
+package com.sample.test.flickersample.features.query.data.repository.network;
 
-import com.sample.test.flickersample.query.data.model.Photo;
-import com.sample.test.flickersample.query.data.model.PhotosList;
+import com.sample.test.flickersample.features.query.data.model.Photo;
+import com.sample.test.flickersample.features.query.data.model.PhotosList;
 
 import org.junit.Test;
 

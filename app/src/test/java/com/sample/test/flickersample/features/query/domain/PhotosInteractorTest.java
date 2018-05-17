@@ -1,10 +1,10 @@
-package com.sample.test.flickersample.query.domain;
+package com.sample.test.flickersample.features.query.domain;
 
 import android.support.annotation.NonNull;
 
-import com.sample.test.flickersample.query.data.model.Photo;
-import com.sample.test.flickersample.query.data.model.PhotosList;
-import com.sample.test.flickersample.query.data.repository.PhotosRepository;
+import com.sample.test.flickersample.features.query.data.model.Photo;
+import com.sample.test.flickersample.features.query.data.model.PhotosList;
+import com.sample.test.flickersample.features.query.data.repository.PhotosRepository;
 
 import org.junit.Before;
 import org.junit.Test;

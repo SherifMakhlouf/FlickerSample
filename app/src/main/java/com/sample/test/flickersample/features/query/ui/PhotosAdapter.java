@@ -1,4 +1,4 @@
-package com.sample.test.flickersample.query.ui;
+package com.sample.test.flickersample.features.query.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.sample.test.flickersample.R;
-import com.sample.test.flickersample.query.data.model.Photo;
+import com.sample.test.flickersample.features.query.data.model.Photo;
 import com.sample.test.flickersample.util.PhotoLoader;
 
 import java.util.Collections;

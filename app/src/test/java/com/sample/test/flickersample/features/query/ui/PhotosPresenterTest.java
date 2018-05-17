@@ -1,7 +1,7 @@
-package com.sample.test.flickersample.query.ui;
+package com.sample.test.flickersample.features.query.ui;
 
-import com.sample.test.flickersample.query.data.model.Photo;
-import com.sample.test.flickersample.query.domain.PhotosInteractor;
+import com.sample.test.flickersample.features.query.data.model.Photo;
+import com.sample.test.flickersample.features.query.domain.PhotosInteractor;
 
 import org.junit.Before;
 import org.junit.Test;

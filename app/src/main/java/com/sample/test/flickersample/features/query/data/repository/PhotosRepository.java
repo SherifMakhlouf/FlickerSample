@@ -1,6 +1,6 @@
-package com.sample.test.flickersample.query.data.repository;
+package com.sample.test.flickersample.features.query.data.repository;
 
-import com.sample.test.flickersample.query.data.model.PhotosList;
+import com.sample.test.flickersample.features.query.data.model.PhotosList;
 
 /**
  * Repository for images

@@ -1,15 +1,15 @@
-package com.sample.test.flickersample.query.ui;
+package com.sample.test.flickersample.features.query.ui;
 
-import com.sample.test.flickersample.query.data.model.Photo;
-import com.sample.test.flickersample.query.domain.PhotosInteractor;
+import com.sample.test.flickersample.features.query.data.model.Photo;
+import com.sample.test.flickersample.features.query.domain.PhotosInteractor;
 
 import java.util.List;
 
-import static com.sample.test.flickersample.query.ui.PhotosPresenter.PhotosViewModel.State.Data;
-import static com.sample.test.flickersample.query.ui.PhotosPresenter.PhotosViewModel.State.LoadingAll;
-import static com.sample.test.flickersample.query.ui.PhotosPresenter.PhotosViewModel.data;
-import static com.sample.test.flickersample.query.ui.PhotosPresenter.PhotosViewModel.loadingAll;
-import static com.sample.test.flickersample.query.ui.PhotosPresenter.PhotosViewModel.loadingMore;
+import static com.sample.test.flickersample.features.query.ui.PhotosPresenter.PhotosViewModel.State.Data;
+import static com.sample.test.flickersample.features.query.ui.PhotosPresenter.PhotosViewModel.State.LoadingAll;
+import static com.sample.test.flickersample.features.query.ui.PhotosPresenter.PhotosViewModel.data;
+import static com.sample.test.flickersample.features.query.ui.PhotosPresenter.PhotosViewModel.loadingAll;
+import static com.sample.test.flickersample.features.query.ui.PhotosPresenter.PhotosViewModel.loadingMore;
 
 /**
  * Photo search presenter
