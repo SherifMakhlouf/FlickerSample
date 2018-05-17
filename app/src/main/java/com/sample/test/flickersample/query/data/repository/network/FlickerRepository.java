@@ -41,7 +41,7 @@ public class FlickerRepository implements PhotosRepository {
         }
     }
 
-    private URL buildUrl(String query, int page) throws MalformedURLException, UnsupportedEncodingException {
+    private URL buildUrl(String query, int page) throws MalformedURLException {
         return new URL(
                 format(
                         Locale.getDefault(),

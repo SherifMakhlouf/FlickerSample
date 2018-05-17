@@ -18,7 +18,7 @@ public class PhotosPresenter implements PhotosInteractor.SearchListener {
     private PhotosInteractor interactor;
     private PhotosStateView view;
 
-    PhotosPresenter(PhotosInteractor interactor) {
+    public PhotosPresenter(PhotosInteractor interactor) {
         this.interactor = interactor;
     }
 

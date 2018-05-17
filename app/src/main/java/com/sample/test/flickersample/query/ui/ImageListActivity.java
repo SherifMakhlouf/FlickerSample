@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 
 import com.sample.test.flickersample.FlickerApplication;
 import com.sample.test.flickersample.R;
+import com.sample.test.flickersample.di.DependencyProvider;
 import com.sample.test.flickersample.query.data.model.Photo;
 import com.sample.test.flickersample.query.domain.PhotosInteractor;
 import com.sample.test.flickersample.query.ui.PhotosPresenter.PhotosViewModel;
@@ -26,14 +27,14 @@ public class ImageListActivity extends AppCompatActivity implements PhotosPresen
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private EditText searchText;
+    private DependencyProvider dependencyProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_list);
-        FlickerApplication application = (FlickerApplication) getApplication();
-        PhotosInteractor interactor = application.getPhotosInteractor();
-        presenter = new PhotosPresenter(interactor);
+        dependencyProvider = ((FlickerApplication) getApplication()).getDependencyProvider();
+        presenter = dependencyProvider.providePhotosPresenter();
         progressBar = findViewById(R.id.progress_bar);
         setupRecyclerView();
         setupSearchText();
@@ -63,9 +64,10 @@ public class ImageListActivity extends AppCompatActivity implements PhotosPresen
 
     private void setupRecyclerView() {
         final GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
-        FlickerApplication application = (FlickerApplication) getApplication();
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        adapter = new PhotosAdapter(new PhotoLoader(application.getPhotoCache()));
+
+        adapter = new PhotosAdapter(new PhotoLoader(dependencyProvider.provideCache()));
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -108,7 +110,7 @@ public class ImageListActivity extends AppCompatActivity implements PhotosPresen
     }
 
     private void updateStateOnUiThread(PhotosViewModel state) {
-        switch (state.state){
+        switch (state.state) {
             case Data:
                 setDataState(state.data);
                 break;
