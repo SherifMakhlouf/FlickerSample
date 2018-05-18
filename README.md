@@ -12,13 +12,13 @@ Project is splitted into feature packages, currently the app has a single featur
 
 ### Data Layer
 
-All data needed for the feature comes throught this layer. Here we use the repositry design pattern so outter layers doesn't know where the data is coming from and repositories decide wither data is loaded from network or file or something else.
+All data needed for the feature comes throught this layer. Here we use the repositry design pattern so outter layers doesn't know where the data is coming from and repositories decide whether data is loaded from network or file or something else.
 
 in this sample we only have a network implementation (FlickerRepository)
 
 ### Domain Layer
 
-Which contains the business logic related to the feature represented here by PhotosInteractor, this interactor decides wither to load a new query or load next page for the same query. and these cases are tested
+Which contains the business logic related to the feature represented here by PhotosInteractor, this interactor decides whether to load a new query or load next page for the same query. and these cases are tested
 
 ### Presentation Layer
 
