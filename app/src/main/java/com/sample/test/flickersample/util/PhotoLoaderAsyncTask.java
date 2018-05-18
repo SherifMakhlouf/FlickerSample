@@ -34,7 +34,8 @@ public class PhotoLoaderAsyncTask extends AsyncTask<String, Void, Bitmap> {
     protected Bitmap doInBackground(String... strings) {
         this.url = strings[0];
         Bitmap bitmap = downloadBitmap(url);
-        cache.put(url, bitmap);
+//        bitmap.getByteCount();
+//        cache.put(url, bitmap);
         return bitmap;
     }
 
