@@ -18,7 +18,7 @@ in this sample we only have a network implementation (FlickerRepository)
 
 ### Domain Layer
 
-Which contains the business logic related to the feature, for this example is deciding wither loading new searches or loading next page for the same search.
+Which contains the business logic related to the feature represented here by PhotosInteractor, this interactor decides wither to load a new query or load next page for the same query. and these cases are tested
 
 ### Presentation Layer
 
