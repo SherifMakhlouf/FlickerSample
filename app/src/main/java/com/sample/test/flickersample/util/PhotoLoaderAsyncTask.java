@@ -19,7 +19,7 @@ import java.net.URL;
 public class PhotoLoaderAsyncTask extends AsyncTask<String, Void, Bitmap> {
     private final WeakReference<ImageView> imageViewReference;
     private final LruCache<String, Bitmap> cache;
-    private  String url;
+    private String url;
 
     PhotoLoaderAsyncTask(ImageView imageView, LruCache<String, Bitmap> cache) {
         imageViewReference = new WeakReference<>(imageView);
@@ -34,14 +34,13 @@ public class PhotoLoaderAsyncTask extends AsyncTask<String, Void, Bitmap> {
     protected Bitmap doInBackground(String... strings) {
         this.url = strings[0];
         Bitmap bitmap = downloadBitmap(url);
-//        bitmap.getByteCount();
-//        cache.put(url, bitmap);
+        cache.put(url, bitmap);
         return bitmap;
     }
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        if(isCancelled()) {
+        if (isCancelled()) {
             bitmap = null;
         }
 

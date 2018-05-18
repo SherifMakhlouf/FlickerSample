@@ -3,7 +3,7 @@ package com.sample.test.flickersample.features.query.data.model;
 import java.util.List;
 
 /**
- * Photo list model
+ * Photos list model
  */
 public class PhotosList {
     public final int page;

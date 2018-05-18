@@ -1,6 +1,5 @@
 package com.sample.test.flickersample.features.query.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -16,11 +15,9 @@ import com.sample.test.flickersample.FlickerApplication;
 import com.sample.test.flickersample.R;
 import com.sample.test.flickersample.di.DependencyProvider;
 import com.sample.test.flickersample.features.query.data.model.Photo;
-import com.sample.test.flickersample.features.query.domain.PhotosInteractor;
 import com.sample.test.flickersample.features.query.ui.PhotosPresenter.PhotosViewModel;
 import com.sample.test.flickersample.util.PhotoLoader;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ImageListActivity extends AppCompatActivity implements PhotosPresenter.PhotosStateView {
@@ -35,8 +32,10 @@ public class ImageListActivity extends AppCompatActivity implements PhotosPresen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_list);
+
         dependencyProvider = ((FlickerApplication) getApplication()).getDependencyProvider();
         presenter = dependencyProvider.providePhotosPresenter();
+
         progressBar = findViewById(R.id.progress_bar);
         setupRecyclerView();
         setupSearchText();

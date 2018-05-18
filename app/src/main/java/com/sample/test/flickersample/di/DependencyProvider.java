@@ -11,6 +11,8 @@ import com.sample.test.flickersample.features.query.ui.PhotosPresenter;
 import com.sample.test.flickersample.util.PhotosCache;
 import com.sample.test.flickersample.util.ScheduledExecutor;
 
+import java.util.concurrent.Executor;
+
 import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
@@ -22,14 +24,14 @@ public class DependencyProvider {
 
 
     public DependencyProvider(Context context) {
-        photosInteractor = new PhotosInteractor(providePhotosRepository(), new ScheduledExecutor());
+        photosInteractor = new PhotosInteractor(providePhotosRepository(), provideExecutor());
         photosCache = createCache(context);
     }
 
     private PhotosCache createCache(Context context) {
         ActivityManager activityManager = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
         int memoryClassByte = activityManager.getMemoryClass() * 1024 * 1024;
-        return new PhotosCache(memoryClassByte);
+        return new PhotosCache(memoryClassByte / 8);
     }
 
     public PhotosCache provideCache() {
@@ -46,5 +48,9 @@ public class DependencyProvider {
 
     private PhotosRepository providePhotosRepository() {
         return new FlickerRepository(new PhotoParser());
+    }
+
+    private Executor provideExecutor() {
+        return new ScheduledExecutor();
     }
 }
