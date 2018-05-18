@@ -18,6 +18,7 @@ public class PhotosInteractor {
     private AtomicInteger currentPage = new AtomicInteger(1);
     private List<Photo> currentData = new ArrayList<>();
     private SearchListener listener;
+    private String lastQuery;
 
     public PhotosInteractor(PhotosRepository repository, Executor executor) {
         this.repository = repository;
@@ -34,17 +35,22 @@ public class PhotosInteractor {
      * @param query query string
      */
     public void query(final String query) {
-        if (query.isEmpty()) {
-            listener.onSearchResult(Collections.<Photo>emptyList());
+        if (query.equals(lastQuery)) {
+            listener.onSearchResult(currentData);
         } else {
-            currentPage.set(1);
-            executor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    currentData = repository.query(query, currentPage.get()).photos;
-                    listener.onSearchResult(currentData);
-                }
-            });
+            if (query.isEmpty()) {
+                listener.onSearchResult(Collections.<Photo>emptyList());
+            } else {
+                lastQuery = query;
+                currentPage.set(1);
+                executor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        currentData = repository.query(query, currentPage.get()).photos;
+                        listener.onSearchResult(currentData);
+                    }
+                });
+            }
         }
     }
 

@@ -19,13 +19,13 @@ import static android.content.Context.ACTIVITY_SERVICE;
  * Provides dependencies
  */
 public class DependencyProvider {
-    private final PhotosInteractor photosInteractor;
     private final PhotosCache photosCache;
-
+    private PhotosInteractor photosInteractor;
 
     public DependencyProvider(Context context) {
-        photosInteractor = new PhotosInteractor(providePhotosRepository(), provideExecutor());
         photosCache = createCache(context);
+        photosInteractor = new PhotosInteractor(providePhotosRepository(), provideExecutor());
+
     }
 
     private PhotosCache createCache(Context context) {

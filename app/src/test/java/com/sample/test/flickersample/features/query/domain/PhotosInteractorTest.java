@@ -43,7 +43,7 @@ public class PhotosInteractorTest {
     }
 
     @Test
-    public void testQuery() throws Exception {
+    public void testQuery() {
         // Given
         String query = "Kittens";
         int page = 1;
@@ -61,7 +61,7 @@ public class PhotosInteractorTest {
     }
 
     @Test
-    public void testQuery_emptyString_ReturnEmptyList() throws Exception {
+    public void testQuery_emptyString_ReturnEmptyList() {
         // Given
         String query = "";
 
@@ -73,7 +73,7 @@ public class PhotosInteractorTest {
     }
 
     @Test
-    public void testLoadNext() throws Exception {
+    public void testLoadNext() {
         // Given
         String query = "Kittens";
         int page = 1;
@@ -89,6 +89,26 @@ public class PhotosInteractorTest {
 
         // Then
         verify(repository).query(query, 2);
+        verify(listener, times(2)).onSearchResult(list);
+    }
+
+    @Test
+    public void testQuery_sameQuery_DontLoadAgain() {
+        // Given
+        String query = "Kittens";
+        int page = 1;
+        List<Photo> list = getPhotos();
+        PhotosList result = createPhotosList(page, list);
+
+        given(repository.query(anyString(), anyInt()))
+                .willReturn(result);
+
+        // When
+        testee.query(query);
+        testee.query(query);
+
+        // Then
+        verify(repository).query(query, 1);
         verify(listener, times(2)).onSearchResult(list);
     }
 

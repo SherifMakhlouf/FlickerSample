@@ -29,6 +29,7 @@ public class PhotosPresenter implements PhotosInteractor.SearchListener {
 
     void onStop() {
         interactor.setSearchResultListener(null);
+        view = null;
     }
 
     void onUserSearch(String searchText) {
